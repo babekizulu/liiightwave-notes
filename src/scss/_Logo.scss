@@ -13,6 +13,7 @@
 }
 
 .logo-light { font-weight: 400; }
+.logo img { display:block; width:52px; height:52px; flex-shrink:0; padding:4px; background:$ink; border-radius:8px; }
 
 .logo-mark {
   display: flex;

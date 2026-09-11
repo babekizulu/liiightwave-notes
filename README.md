@@ -1,78 +1,29 @@
-# React + TypeScript + Vite
+# LiiiGHTNOTES
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A private study notebook with email-verified accounts and AI-assisted visual notes. React, TypeScript and SCSS frontend; Express API and PostgreSQL storage.
 
-Currently, two official plugins are available:
+## Development
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Use Node.js 24. Install frontend dependencies with npm ci and backend dependencies with npm ci --prefix server. Copy server/.env.example to server/.env and configure a verified email sender. Start the API with npm run dev --prefix server and the frontend with npm run dev in a second terminal. Local storage uses PGlite when DATABASE_URL is absent. GENERATION_MODE=demo is available for local work; no demo accounts or notes are seeded by default.
 
-## React Compiler
+## Verification
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+Run npm run lint, npm run build, npm test --prefix server, and npm audit --omit=dev in both directories. CI runs these checks on pushes and pull requests.
 
-Note: This will impact Vite dev & build performances.
-You can also try [the experimental native React Compiler support in plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md#rust-react-compiler) by using `compiler: true` in the plugin options instead of using the Babel plugin.
+The September 11, 2026 local verification passed 15 backend tests, frontend lint/build, and production dependency audits. A separate browser journey covered registration, verification, notes, password recovery, account controls and responsive layouts. All 14 tested views had zero automated WCAG A/AA violations. This does not certify complete accessibility or security compliance. See [production review](docs/production-review.md) for remaining live release checks.
 
-## Expanding the ESLint configuration
+## Railway API
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+Set the service root directory to /server and configuration path to /server/railway.json. The Dockerfile installs production dependencies and runs as a non-root user. Add a PostgreSQL service and reference its private DATABASE_URL from the API service.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+Required variables: NODE_ENV=production, HOST=0.0.0.0, CLIENT_ORIGIN=https://notes.liiightwave.com, RESEND_API_KEY, MAIL_FROM, GENERATION_MODE=openai, OPENAI_API_KEY. Use a verified sender for MAIL_FROM. Keep all credentials in Railway variables. Never put credentials in source files, frontend variables or chat. Optional OPENAI_MODEL defaults to gpt-4.1-mini. Generation quotas default to 20 per user and 200 globally per day; configure lower values for a small initial rollout.
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+Database migrations run transactionally on startup. The health endpoint is /api/health. Legacy ownerless notes remain inaccessible; reassignment requires a deliberate verified migration. Take a backup before schema changes and configure recurring backups with a tested restore before accepting real users.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Netlify frontend
 
-```
+Build at the repository root, publish dist, and set API_ORIGIN to the API's HTTPS Railway origin. netlify.toml builds a same-origin /api proxy so session cookies work without third-party cookies. Missing or invalid API_ORIGIN fails the deployment. Production uses notes.liiightwave.com with HTTPS. If another site origin is intentionally supported, add it to the API's exact ADDITIONAL_ORIGINS allowlist.
 
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
+## Operations
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
-```
+The approved Railway workspace compute cap is $20 with an alert at $15. It affects every app in that workspace. Email, OpenAI and any separately billed services require their own spending controls. Monitor health, failed email delivery, generation failures and backup completion. Do not log tokens, request bodies or credentials. The code expires sessions and keeps security events for 90 days. Publish the actual operator's contact and privacy terms before public onboarding.

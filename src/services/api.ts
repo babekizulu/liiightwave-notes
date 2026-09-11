@@ -1,6 +1,8 @@
 import axios from 'axios';
 import type { StudyNote, NoteInput, Health } from '../types/notes';
-const api = axios.create({ baseURL: import.meta.env.VITE_API_BASE_URL || '/api', timeout: 15000 });
+export const api = axios.create({ baseURL: import.meta.env.VITE_API_BASE_URL || '/api', timeout: 20000, withCredentials:true, headers:{'X-Requested-With':'LiiiGHTNOTES'} });
+export function setCsrfToken(token:string|null){if(token)api.defaults.headers.common['X-CSRF-Token']=token;else delete api.defaults.headers.common['X-CSRF-Token'];}
+api.interceptors.response.use(response=>response,error=>{if(error.response?.status===401 && error.config?.url?.startsWith('/notes'))window.dispatchEvent(new Event('session-expired'));return Promise.reject(error);});
 export const notesApi = {
   list: async () => (await api.get<StudyNote[]>('/notes')).data,
   health: async () => (await api.get<Health>('/health')).data,
@@ -10,5 +12,5 @@ export const notesApi = {
   remove: async (id: string) => { await api.delete('/notes/' + id); },
 };
 export function errorMessage(error: unknown): string {
-  return axios.isAxiosError(error) ? error.response?.data?.error || 'Could not reach your notes. Check that the local server is running.' : 'Something went wrong. Please try again.';
+  return axios.isAxiosError(error) ? error.response?.data?.error || 'Could not reach your study space. Check your connection and try again.' : 'Something went wrong. Please try again.';
 }

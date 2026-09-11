@@ -9,4 +9,6 @@ import '@fontsource/literata/latin-500.css';
 import '@fontsource/literata/latin-400-italic.css';
 
 import App from './App';
-createRoot(document.getElementById('root')!).render(<StrictMode><App/></StrictMode>);
+import AuthGate from './components/AuthGate';
+import ErrorBoundary from './components/ErrorBoundary';
+createRoot(document.getElementById('root')!).render(<StrictMode><ErrorBoundary><AuthGate>{(user,onAccount)=><App user={user} onAccount={onAccount}/>}</AuthGate></ErrorBoundary></StrictMode>);
