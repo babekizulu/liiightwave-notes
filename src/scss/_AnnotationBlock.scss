@@ -1,0 +1,41 @@
+@use 'utils' as *;
+
+.annotation {
+  display: flex;
+  gap: 14px;
+  padding: 24px;
+  margin: 32px 0;
+  border-radius: 8px;
+  background: #f5edcf;
+  border-left: 3px solid $yellow;
+
+  &.rose {
+    background: #f6e8e2;
+    border-color: $coral;
+  }
+
+  &.sage {
+    background: #e8edde;
+    border-color: $green;
+  }
+
+  h3 {
+    font: 600 16px $ui;
+    margin: 0 0 8px;
+  }
+
+  p {
+    font: 18px/1.7 $reading;
+    margin: 0;
+  }
+
+  @include bp-sheet-phone {
+    padding: 20px 16px;
+    gap: 10px;
+  }
+}
+
+.annotation-star {
+  font-size: 24px;
+  color: $ink;
+}

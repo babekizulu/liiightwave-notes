@@ -1,0 +1,8 @@
+@use 'utils' as *;
+
+.sheet-paragraph {
+  white-space: pre-wrap;
+  font: 18px/1.75 $reading;
+  max-width: 70ch;
+  margin: 28px 0;
+}

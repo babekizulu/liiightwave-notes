@@ -1,0 +1,32 @@
+@use 'utils' as *;
+
+.app {
+  display: flex;
+  min-height: 100dvh;
+
+  @include bp-tablet { display: block; }
+}
+
+main { min-width: 0; flex: 1; }
+
+.workspace {
+  display: grid;
+  grid-template-columns: 306px minmax(0, 1fr);
+  min-height: calc(100dvh - 180px);
+
+  @include bp-wide { grid-template-columns: 340px minmax(0, 1fr); }
+  @include bp-compact { grid-template-columns: 280px minmax(0, 1fr); }
+  @include bp-tablet { grid-template-columns: 1fr; }
+}
+
+.skip-link {
+  position: fixed;
+  top: -80px;
+  left: 16px;
+  z-index: 10;
+  background: $paper;
+  padding: 12px;
+  color: $green;
+
+  &:focus { top: 12px; }
+}

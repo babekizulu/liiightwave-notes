@@ -1,0 +1,24 @@
+@use 'utils' as *;
+
+.primary,
+.secondary { @include action-button; }
+
+.primary {
+  background: $background;
+  color: $ink;
+
+  &:hover:not(:disabled) { background: $ink; color: $paper; }
+}
+
+.secondary {
+  border-color: $boundary;
+  background: $paper;
+
+  &:hover:not(:disabled) { background: $oat; }
+}
+
+.icon-button {
+  @include icon-button;
+
+  &:hover:not(:disabled) { background: $oat; }
+}

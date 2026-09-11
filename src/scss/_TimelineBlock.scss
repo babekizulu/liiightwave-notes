@@ -1,0 +1,48 @@
+@use 'utils' as *;
+
+.timeline {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px 24px;
+  list-style: none;
+  padding: 0;
+  margin: 0 0 32px;
+
+  li {
+    padding-top: 18px;
+    position: relative;
+    border-top: 1px solid $boundary;
+  }
+
+  li::before {
+    content: '';
+    width: 9px;
+    height: 9px;
+    background: $green;
+    border-radius: 50%;
+    position: absolute;
+    top: -5px;
+    left: 0;
+  }
+
+  strong {
+    font: 500 18px/1.5 $reading;
+    display: block;
+  }
+
+  p {
+    margin: 8px 0 0;
+    font: 16px/1.7 $reading;
+    color: $muted;
+  }
+
+  @include bp-sheet-mid { grid-template-columns: 1fr; }
+  @include bp-sheet-phone { grid-template-columns: 1fr; }
+}
+
+.timeline-date {
+  display: block;
+  color: $green;
+  font: 600 13px $ui;
+  margin-bottom: 10px;
+}

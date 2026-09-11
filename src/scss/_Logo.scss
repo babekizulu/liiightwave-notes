@@ -1,0 +1,31 @@
+@use 'utils' as *;
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: -.7px;
+
+  @include bp-phone { font-size: 16px; }
+}
+
+.logo-light { font-weight: 400; }
+
+.logo-mark {
+  display: flex;
+  padding: 9px;
+  background: $ink;
+  color: $paper;
+  border-radius: $radius-control;
+}
+
+@include bp-compact {
+  .logo > span:last-child { display: none; }
+}
+
+@include bp-tablet {
+  .logo > span:last-child { display: inline; }
+}

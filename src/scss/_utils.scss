@@ -1,0 +1,107 @@
+// Brand accents are provisional until the original logo asset is supplied.
+$background: #f6f2e9;
+$paper: #fffcf5;
+$oat: #eae1d2;
+$line: #d7c9b5;
+$boundary: #8b7b68;
+$ink: #302a24;
+$muted: #6b6054;
+$green: #3f5b49;
+$green-hover: #304737;
+$oak: #b58a5a;
+$yellow: #efc65a;
+$coral: #e58b78;
+$blue: #8bbbd0;
+$danger: #9c352d;
+$reading: 'Literata', Georgia, serif;
+$ui: 'DM Sans', sans-serif;
+$space-1: 4px;
+$space-2: 8px;
+$space-3: 12px;
+$space-4: 16px;
+$space-5: 24px;
+$space-6: 32px;
+$space-7: 48px;
+$radius-control: 8px;
+$radius-paper: 14px;
+$border: 1px solid $line;
+$shadow-paper: 0 3px 8px #302a2404, 0 14px 40px #302a2408;
+$shadow-dialog: 0 24px 90px #302a2433;
+$transition: 180ms ease;
+
+$bp-wide: 1700px;
+$bp-compact: 1200px;
+$bp-tablet: 850px;
+$bp-phone: 480px;
+$bp-sheet-mid: 1100px;
+$bp-sheet-phone: 540px;
+
+@mixin bp-wide {
+  @media (min-width: $bp-wide) { @content; }
+}
+
+@mixin bp-compact {
+  @media (max-width: $bp-compact) { @content; }
+}
+
+@mixin bp-tablet {
+  @media (max-width: $bp-tablet) { @content; }
+}
+
+@mixin bp-phone {
+  @media (max-width: $bp-phone) { @content; }
+}
+
+@mixin bp-sheet-mid {
+  @media (max-width: $bp-sheet-mid) and (min-width: #{$bp-tablet + 1px}) { @content; }
+}
+
+@mixin bp-sheet-phone {
+  @media (max-width: $bp-sheet-phone) { @content; }
+}
+
+@mixin reduced-motion {
+  @media (prefers-reduced-motion: reduce) { @content; }
+}
+
+@mixin paper {
+  background: $paper;
+  border: $border;
+  border-radius: $radius-paper;
+  box-shadow: $shadow-paper;
+}
+
+@mixin action-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  min-height: 44px;
+  border: 1px solid transparent;
+  border-radius: $radius-control;
+  padding: 10px 16px;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+@mixin icon-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  min-height: 44px;
+  flex-shrink: 0;
+  padding: 10px;
+  border: 0;
+  border-radius: $radius-control;
+  background: none;
+}
+
+@mixin visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}

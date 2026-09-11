@@ -1,0 +1,21 @@
+@use 'utils' as *;
+
+.search {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px;
+  border: 1px solid $boundary;
+  border-radius: $radius-control;
+  color: $muted;
+  min-height: 44px;
+
+  input {
+    background: none;
+    border: 0;
+    width: 100%;
+    min-width: 0;
+    font-size: 15px;
+    color: $ink;
+  }
+}

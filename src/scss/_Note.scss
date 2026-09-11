@@ -1,0 +1,85 @@
+@use 'utils' as *;
+
+.note-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 4px;
+  padding: 12px 12px 12px 4px;
+  @include paper;
+  margin-bottom: 12px;
+
+  &.selected {
+    border-color: $green;
+    box-shadow: inset 3px 0 $green, $shadow-paper;
+    background: #f0f1e7;
+  }
+
+  &:hover { border-color: $boundary; }
+}
+
+.complete-toggle {
+  width: 44px;
+  height: 44px;
+  border: 0;
+  padding: 0;
+  background: none;
+  flex-shrink: 0;
+  color: $green;
+  display: grid;
+  place-items: center;
+  border-radius: $radius-control;
+
+  &.checked { opacity: 1; }
+
+  &.checked svg {
+    background: $green;
+    color: $paper;
+    border-radius: 50%;
+    padding: 4px;
+    width: 25px;
+    height: 25px;
+  }
+}
+
+.note-select {
+  border: 0;
+  background: none;
+  padding: 6px 0;
+  text-align: left;
+  min-width: 0;
+  flex: 1;
+  border-radius: 4px;
+
+  h3 {
+    font-size: 19px;
+    line-height: 1.45;
+    margin: 7px 0 10px;
+    overflow-wrap: anywhere;
+  }
+
+  p {
+    color: $muted;
+    font-size: 14px;
+    line-height: 1.65;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    overflow-wrap: anywhere;
+    margin-bottom: 14px;
+  }
+}
+
+.note-subject {
+  font-size: 13px;
+  color: $muted;
+  overflow-wrap: anywhere;
+}
+
+.note-status {
+  font-size: 13px;
+  color: $muted;
+
+  &.ready { color: $green; }
+  &.failed { color: $danger; }
+}

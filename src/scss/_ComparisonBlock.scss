@@ -1,0 +1,43 @@
+@use 'utils' as *;
+
+.comparison-block {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 32px;
+  position: relative;
+  margin: 24px 0 32px;
+
+  @include bp-sheet-mid { grid-template-columns: 1fr; }
+  @include bp-sheet-phone { grid-template-columns: 1fr; }
+}
+
+.person-column {
+  border-top: 3px solid $blue;
+  padding-top: 18px;
+
+  &:last-child { border-color: $coral; }
+
+  h4 {
+    margin: 0 0 8px;
+    font: 500 22px $reading;
+  }
+
+  em {
+    font: 15px $ui;
+    color: $muted;
+  }
+
+  ul {
+    padding-left: 20px;
+    margin: 18px 0 0;
+  }
+
+  li {
+    margin-bottom: 12px;
+    font: 17px/1.7 $reading;
+  }
+
+  li::marker { color: $green; }
+}
+
+.versus { display: none; }

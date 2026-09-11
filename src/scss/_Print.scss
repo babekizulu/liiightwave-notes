@@ -1,0 +1,37 @@
+@use 'utils' as *;
+
+@media print {
+  body { background: white; }
+
+  .sidebar,
+  .header,
+  .notes-panel,
+  .tray-toolbar,
+  .error-banner,
+  .delete-confirm,
+  .skip-link,
+  .editor-dialog { display: none !important; }
+
+  .app,
+  main,
+  .workspace,
+  .tray,
+  .tray-canvas {
+    display: block;
+    padding: 0;
+    background: white;
+  }
+
+  .visual-sheet {
+    box-shadow: none !important;
+    border: 0 !important;
+    margin: 0 !important;
+    max-width: none !important;
+    overflow: visible !important;
+  }
+
+  .sheet-blocks > *,
+  .sheet-title { break-inside: avoid; }
+
+  @page { margin: 12mm; }
+}

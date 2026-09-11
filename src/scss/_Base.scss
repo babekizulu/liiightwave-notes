@@ -1,0 +1,77 @@
+@use 'utils' as *;
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  color: $ink;
+  background: $background;
+  font: 16px/1.5 $ui;
+}
+
+button,
+input,
+textarea { font: inherit; }
+
+button {
+  color: inherit;
+  cursor: pointer;
+  transition: background $transition, border-color $transition, box-shadow $transition;
+}
+
+button:disabled {
+  cursor: default;
+  opacity: .55;
+}
+
+button,
+a,
+input,
+textarea { -webkit-tap-highlight-color: transparent; }
+
+:where(button, a, input, textarea):focus-visible {
+  outline: 3px solid $green;
+  outline-offset: 4px;
+}
+
+input,
+textarea { accent-color: $green; }
+
+input::placeholder,
+textarea::placeholder {
+  color: $muted;
+  opacity: 1;
+}
+
+h1, h2, h3, h4, p { margin-top: 0; }
+
+h1, h2, h3, h4 {
+  font-family: $reading;
+  font-weight: 500;
+}
+
+.eyebrow {
+  font: 500 13px/1.5 $ui;
+  letter-spacing: 1.4px;
+  color: $muted;
+  margin-bottom: 12px;
+  overflow-wrap: anywhere;
+}
+
+.sr-only { @include visually-hidden; }
+
+.spin { animation: spin 1.4s linear infinite; }
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@include reduced-motion {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}

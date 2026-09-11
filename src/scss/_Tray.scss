@@ -1,0 +1,140 @@
+@use 'utils' as *;
+
+.tray {
+  min-width: 0;
+  background: #eee8dd;
+}
+
+.tray-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 12px 24px;
+  border-bottom: $border;
+  background: $background;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+
+  @include bp-compact { padding: 10px 16px; }
+  @include bp-tablet { position: static; }
+
+  @include bp-phone {
+    gap: 6px;
+    padding: 10px 12px;
+  }
+}
+
+.view-tabs {
+  display: flex;
+  gap: 4px;
+
+  button {
+    border: 1px solid transparent;
+    background: none;
+    color: $muted;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 14px;
+    padding: 10px 12px;
+    min-height: 44px;
+    border-radius: $radius-control;
+
+    &.active {
+      background: $paper;
+      color: $green;
+      border-color: $green;
+      font-weight: 600;
+    }
+
+    @include bp-phone { padding: 10px; }
+  }
+}
+
+.tray-actions {
+  display: flex;
+  gap: 2px;
+  color: $muted;
+
+  button:last-child { color: $danger; }
+}
+
+.tray-canvas {
+  padding: 32px clamp(18px, 3vw, 48px) 56px;
+
+  @include bp-tablet { padding: 24px; }
+  @include bp-phone { padding: 20px 12px 36px; }
+}
+
+.generation-empty,
+.blank-tray {
+  min-height: 460px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 40px 24px;
+  color: $green;
+
+  h2 {
+    font-size: 28px;
+    margin: 24px 0 12px;
+    color: $ink;
+  }
+
+  p {
+    font-size: 16px;
+    line-height: 1.7;
+    max-width: 420px;
+    color: $muted;
+    overflow-wrap: anywhere;
+  }
+}
+
+.original-sheet {
+  @include paper;
+  padding: clamp(24px, 4vw, 56px);
+  max-width: 880px;
+  margin: auto;
+
+  h2 {
+    font-size: 32px;
+    overflow-wrap: anywhere;
+  }
+
+  p {
+    font: 18px/1.75 $reading;
+    max-width: 70ch;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+  }
+}
+
+.delete-confirm {
+  background: #f9e7e0;
+  color: $danger;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 16px 24px;
+  font-size: 15px;
+  overflow-wrap: anywhere;
+
+  button {
+    min-height: 44px;
+    padding: 8px 12px;
+    border: 1px solid $danger;
+    background: $paper;
+    border-radius: $radius-control;
+  }
+
+  button:first-of-type {
+    background: $danger;
+    color: $paper;
+  }
+}

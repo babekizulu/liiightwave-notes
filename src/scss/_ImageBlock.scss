@@ -1,0 +1,24 @@
+@use 'utils' as *;
+
+.image-block {
+  margin: 32px 0;
+  padding: 0;
+
+  img {
+    width: 100%;
+    height: auto;
+    max-height: 280px;
+    object-fit: cover;
+    display: block;
+    border-radius: 8px;
+    border: $border;
+  }
+
+  figcaption {
+    font: 13px/1.6 $ui;
+    color: $muted;
+    margin: 12px 0 0;
+  }
+}
+
+.tape { display: none; }

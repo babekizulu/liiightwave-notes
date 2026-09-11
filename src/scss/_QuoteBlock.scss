@@ -1,0 +1,25 @@
+@use 'utils' as *;
+
+.quote-block {
+  text-align: center;
+  padding: 28px 12px;
+  margin: 32px 0;
+  border-top: $border;
+  border-bottom: $border;
+  color: $green;
+
+  blockquote {
+    margin: 12px 0;
+    font: italic 23px/1.6 $reading;
+  }
+
+  p {
+    font: 16px/1.7 $reading;
+    color: $muted;
+  }
+
+  figcaption {
+    font: 13px/1.6 $ui;
+    color: $muted;
+  }
+}
