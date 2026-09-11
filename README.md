@@ -14,7 +14,7 @@ The September 11, 2026 local verification passed 15 backend tests, frontend lint
 
 ## Railway API
 
-Set the service root directory to /server and configuration path to /server/railway.json. The Dockerfile installs production dependencies and runs as a non-root user. Add a PostgreSQL service and reference its private DATABASE_URL from the API service.
+Set the service root directory to /server, choose Dockerfile builder, set Dockerfile path to /server/Dockerfile, healthcheck to /api/health and maximum restart retries to 3. Configure these in Railway settings: new services can no longer opt into its deprecated railway.json mechanism. The Dockerfile installs production dependencies and runs as a non-root user. Add a PostgreSQL service and reference its private DATABASE_URL from the API service.
 
 Required variables: NODE_ENV=production, HOST=0.0.0.0, CLIENT_ORIGIN=https://notes.liiightwave.com, RESEND_API_KEY, MAIL_FROM, GENERATION_MODE=openai, OPENAI_API_KEY. Use a verified sender for MAIL_FROM. Keep all credentials in Railway variables. Never put credentials in source files, frontend variables or chat. Optional OPENAI_MODEL defaults to gpt-4.1-mini. Generation quotas default to 20 per user and 200 globally per day; configure lower values for a small initial rollout.
 
