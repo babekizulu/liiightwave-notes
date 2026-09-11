@@ -19,7 +19,7 @@ export function useNotes() {
   useEffect(() => {
     mounted.current = true;
     const initial = window.setTimeout(() => void refresh(), 0);
-    const timer = window.setInterval(() => { if (!mutation.current) void refresh(); },2500);
+    const timer = window.setInterval(() => { if (!mutation.current && document.visibilityState==='visible') void refresh(); },2500);
     return () => { mounted.current = false; window.clearTimeout(initial); window.clearInterval(timer); };
   },[refresh]);
   const mutate = useCallback(async (key: string, operation: () => Promise<StudyNote | void>) => {
