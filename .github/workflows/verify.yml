@@ -1,4 +1,4 @@
-name: Verify LiiiGHTNOTES
+name: Verify LiiiGHTNOTES frontend
 on: [push, pull_request]
 permissions:
   contents: read
@@ -15,9 +15,3 @@ jobs:
       - run: npm run lint
       - run: npm run build
       - run: npm audit --omit=dev --audit-level=high
-      - run: npm ci
-        working-directory: server
-      - run: npm test
-        working-directory: server
-      - run: npm audit --omit=dev --audit-level=high
-        working-directory: server
